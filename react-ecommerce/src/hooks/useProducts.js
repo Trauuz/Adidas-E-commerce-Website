@@ -7,7 +7,7 @@ const useProducts = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch("http://localhost:5000/api/products")
+        fetch("https://adidas-e-commerce-website.onrender.com")
             .then(res => res.json())
             .then(data => { setAllProducts(data); setLoading(false); })
             .catch(err => { console.error("Fetch error:", err); setLoading(false); });

@@ -7,7 +7,7 @@ const Home = () => {
     const [products, setProduct] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:5000/api/products")
+        fetch("https://adidas-e-commerce-website.onrender.com")
             .then((res) => res.json())
             .then((data) => {
                 setProduct(data);
