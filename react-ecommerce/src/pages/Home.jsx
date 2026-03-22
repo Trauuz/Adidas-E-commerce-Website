@@ -3,30 +3,17 @@ import { useEffect, useState } from "react";
 import ProductCard from "../components/ProductCard";
 import Carousel from "../components/Carousel";
 
-const banner = [
-    {
-        image: "/src/assests/images/banner1.webp"
-    },
-    {
-        image: "/src/assests/images/banner2.jpg"
-    },
-];
-
 const Home = () => {
     const [products, setProduct] = useState([]);
-
-    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         fetch("http://localhost:5000/api/products")
             .then((res) => res.json())
             .then((data) => {
                 setProduct(data);
-                setLoading(false);
             })
             .catch((error) => {
                 console.error("API Fetch Error: ", error);
-                setLoading(false);
             });
     }, []);
 
