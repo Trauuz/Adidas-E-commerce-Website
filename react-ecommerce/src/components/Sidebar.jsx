@@ -20,7 +20,7 @@ const Sidebar = () => {
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {
-        fetch("https://adidas-e-commerce-website.onrender.com")
+        fetch(`${import.meta.env.VITE_API_URL}/api/categories`)
             .then(res => res.json())
             .then(data => setCategories(data))
             .catch(err => console.error("Categories fetch error:", err));
