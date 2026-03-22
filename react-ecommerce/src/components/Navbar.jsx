@@ -47,6 +47,11 @@ const Navbar = () => {
                                 <Link className={`nav-link ${location.pathname === '/policies' ? 'active' : ''}`} to="/policies">Policies</Link>
                             </li>
                             <li className="nav-item px-2">
+                                <Link className={`nav-link position-relative ${location.pathname === '/wishlist' ? 'active' : ''}`} to="/wishlist">
+                                    <i className="fa fa-heart"></i>
+                                </Link>
+                            </li>
+                            <li className="nav-item px-2">
                                 <Link className={`nav-link position-relative ${location.pathname === '/cart' ? 'active' : ''}`} to="/cart">
                                     <i className="fa fa-shopping-cart"></i>
                                     {totalQty > 0 && (
@@ -89,6 +94,19 @@ const Navbar = () => {
                         <div>
                             <i className="fa fa-box fs-5"></i>
                             <div style={{ fontSize: '12px' }}>Products</div>
+                        </div>
+                    </NavLink>
+
+                    {/* Wishlist */}
+                    <NavLink
+                        to="/wishlist"
+                        className={({ isActive }) =>
+                            isActive ? "text-dark text-decoration-none" : "text-secondary text-decoration-none"
+                        }
+                    >
+                        <div>
+                            <i className="fa fa-heart fs-5"></i>
+                            <div style={{ fontSize: '12px' }}>Wishlist</div>
                         </div>
                     </NavLink>
 

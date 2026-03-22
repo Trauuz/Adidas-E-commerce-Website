@@ -73,8 +73,13 @@ const Sidebar = () => {
             <h6 className="fw-bold mb-2">Category</h6>
             <ul className="list-group mb-4">
                 <li
-                    className={`list-group-item list-group-item-action ${selectedCategory === "All" ? "active" : ""}`}
-                    style={{ cursor: "pointer" }}
+                    className="list-group-item list-group-item-action"
+                    style={{
+                        cursor: "pointer",
+                        backgroundColor: selectedCategory === "All" ? "#000" : "",
+                        color: selectedCategory === "All" ? "#fff" : "",
+                        borderColor: selectedCategory === "All" ? "#000" : "",
+                    }}
                     onClick={() => setSelectedCategory("All")}
                 >
                     All Products
@@ -82,8 +87,13 @@ const Sidebar = () => {
                 {categories.map((cat, i) => (
                     <li
                         key={i}
-                        className={`list-group-item list-group-item-action text-capitalize ${selectedCategory === cat ? "active" : ""}`}
-                        style={{ cursor: "pointer" }}
+                        className="list-group-item list-group-item-action text-capitalize"
+                        style={{
+                            cursor: "pointer",
+                            backgroundColor: selectedCategory === cat ? "#000" : "",
+                            color: selectedCategory === cat ? "#fff" : "",
+                            borderColor: selectedCategory === cat ? "#000" : "",
+                        }}
                         onClick={() => setSelectedCategory(cat)}
                     >
                         {cat}

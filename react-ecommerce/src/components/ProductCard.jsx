@@ -4,21 +4,28 @@ import { ProductContext } from '../context/ProductContext';
 
 const ProductCard = ({ product }) => {
     const { addToCart } = useContext(CartContext);
-    const { toggleCompare, isInCompare, trackView } = useContext(ProductContext);
+    const { toggleWishlist, isInWishlist } = useContext(ProductContext);
 
-    const inCompare = isInCompare(product.id);
+    const inWishlist = isInWishlist(product.id);
 
     return (
-        <div
-            className={`card h-100 shadow-sm product-card ${inCompare ? 'compare-selected' : ''}`}
-            onClick={() => trackView(product)}
-        >
+        <div className="card h-100 shadow-sm product-card">
             {/* Image */}
             <div className="product-img-wrapper p-2">
                 <img src={product.image} className="card-img-top product-img" alt={product.name} />
                 {product.discount > 0 && (
                     <span className="sale">-{product.discount}%</span>
                 )}
+                {/* Wishlist heart — top right of image */}
+                <button
+                    className="btn btn-sm wishlist-btn"
+                    title={inWishlist ? 'Remove from wishlist' : 'Add to wishlist'}
+                    onClick={e => { e.stopPropagation(); toggleWishlist(product); }}
+                >
+                    <i className={`${inWishlist ? 'fas' : 'far'} fa-heart`}
+                        style={{ color: inWishlist ? '#dc3545' : '#aaa' }}
+                    ></i>
+                </button>
             </div>
 
             {/* Price */}
@@ -48,21 +55,12 @@ const ProductCard = ({ product }) => {
                     {product.category}
                 </span>
 
-                <div className="d-flex gap-2 mt-auto mb-2">
-                    <button
-                        className="btn accent-bg text-white flex-grow-1"
-                        onClick={e => { e.stopPropagation(); addToCart(product); }}
-                    >
-                        <i className="fas fa-shopping-cart me-1"></i> Add to Cart
-                    </button>
-                    <button
-                        className={`btn ${inCompare ? 'btn-success' : 'btn-outline-secondary'}`}
-                        title={inCompare ? 'Remove from compare' : 'Add to compare'}
-                        onClick={e => { e.stopPropagation(); toggleCompare(product); }}
-                    >
-                        <i className="fas fa-balance-scale"></i>
-                    </button>
-                </div>
+                <button
+                    className="btn accent-bg text-white mt-auto mb-2"
+                    onClick={e => { e.stopPropagation(); addToCart(product); }}
+                >
+                    <i className="fas fa-shopping-cart me-1"></i> Add to Cart
+                </button>
             </div>
         </div>
     );
